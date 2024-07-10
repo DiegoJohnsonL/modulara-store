@@ -1,5 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 
 export default function Model() {
   return (
@@ -12,7 +11,6 @@ export default function Model() {
 function Bot() {
   return (
     <>
-      <OrbitControls />
       <mesh>
         <boxGeometry />
         <meshNormalMaterial />
