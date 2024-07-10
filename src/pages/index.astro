@@ -1,12 +1,13 @@
 ---
 import { ModeToggle } from '@/components/color-mode-toggle';
-import Layout from '../layouts/Layout.astro';
+import Model from '@/components/model';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import '@/styles/globals.css'
 ---
 
-<Layout title="Welcome to Modulara">
-	<main>
-		<h1>Astro</h1>
-		<ModeToggle client:load />
+<BaseLayout title="Welcome to Modulara">
+	<main class="w-full h-screen relative flex justify-center items-center">
+		<ModeToggle client:load/>
+		<Model client:only="react"/>
 	</main>
-</Layout>
+</BaseLayout>
