@@ -19,7 +19,7 @@ export default function Scene() {
   return (
     <div className="h-[70vh] w-full flex flex-col fixed inset-0 top-20 left-1/2 -translate-x-1/2 ">
       <div className="flex-1">
-        <Canvas shadows camera={{ position: [0, 5, 5] }}>
+        <Canvas shadows camera={{ position: [0, 4, 6] }}>
           <OrbitControls enableZoom={false} />
           <directionalLight
             intensity={2}
@@ -28,13 +28,9 @@ export default function Scene() {
             shadow-mapSize={2048}
             shadow-bias={-0.0001}
           />
-          <ambientLight intensity={0.5} position={[0, 2, 0]} />
+          <ambientLight intensity={0.5} position={[0, 2, 0]} scale={1.5} />
           <BotModel ref={botModel} />
         </Canvas>
-      </div>
-      <div className="flex gap-6 items-center justify-center">
-        <Button onClick={onClickOpenAnimation}>Start Animation</Button>
-        <Button onClick={stopAllAnimations}>Stop Animation</Button>
       </div>
     </div>
   );
