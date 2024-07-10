@@ -46,7 +46,7 @@ export interface BotModelRef {
 
 export const BotModel = forwardRef((props: JSX.IntrinsicElements["group"], ref) => {
   const group = useRef<THREE.Group>(null);
-  const { scrollYProgress } = useScroll({ offset: ["start start", "end end"] });
+  const { scrollYProgress } = useScroll({ offset: ["start start", "end center"] });
   useEffect(() => void (actions["03_Sphere_bot_Open"]!.reset().play().paused = true), []);
   useFrame(() => {
     if (scrollYProgress !== null) {
