@@ -1,9 +1,13 @@
 import * as THREE from "three";
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useGLTF, useAnimations, useCamera } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useScroll } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(ScrollTrigger);
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -39,31 +43,72 @@ interface GLTFAction extends THREE.AnimationClip {
   name: ActionName;
 }
 
-export interface BotModelRef {
-  playAnimation: (actionName: ActionName) => void;
-  stopAnimation: (actionName: ActionName) => void;
-}
-
 export const BotModel = forwardRef((props: JSX.IntrinsicElements["group"], ref) => {
   const group = useRef<THREE.Group>(null);
-  const { scrollYProgress } = useScroll({ offset: ["start start", "end center"] });
-  useEffect(() => void (actions["03_Sphere_bot_Open"]!.reset().play().paused = true), []);
+  const { scrollYProgress } = useScroll({ offset: ["start start", "end end"] });
+  const { nodes, materials, animations } = useGLTF("/bot.glb") as GLTFResult;
+  const { actions } = useAnimations(animations, group);
+  const { camera } = useThree();
+
+  useEffect(() => {
+    actions["03_Sphere_bot_Open"]!.reset().play().paused = true;
+  }, []);
+
   useFrame(() => {
     if (scrollYProgress !== null) {
       actions["03_Sphere_bot_Open"]!.time = actions["03_Sphere_bot_Open"]!.getClip().duration * scrollYProgress.get();
     }
   });
-  const { nodes, materials, animations } = useGLTF("/bot.glb") as GLTFResult;
-  const { actions } = useAnimations(animations, group);
 
-  useImperativeHandle(ref, () => ({
-    playAnimation: (actionName: ActionName) => {
-      actions[actionName]?.play();
-    },
-    stopAnimation: (actionName: ActionName) => {
-      actions[actionName]?.reset().stop();
-    },
-  }));
+  const onUpdated = () => {
+    const position = camera.position;
+    const target = group.current!.position;
+    console.log("Target Position", target);
+    console.log("Camera Position", position);
+  };
+
+  useGSAP(() => {
+    const target = group.current!.position;
+
+    const tl = gsap.timeline();
+    tl.to(target, {
+      x: -2,
+      y: -2,
+      scrollTrigger: {
+        trigger: "#second",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+        immediateRender: false,
+      },
+      onUpdated: onUpdated,
+    })
+      .to(target, {
+        x: 0,
+        y: 0,
+        scrollTrigger: {
+          trigger: "#third",
+          start: "top bottom",
+          end: "top top",
+          markers: true,
+          scrub: true,
+          immediateRender: false,
+        },
+        onUpdated: onUpdated,
+      })
+      .to(target, {
+        x: 2,
+        y: -2,
+        scrollTrigger: {
+          trigger: "#fourth",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+        onUpdated: onUpdated,
+      });
+  });
 
   return (
     <group ref={group} {...props} dispose={null}>

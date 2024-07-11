@@ -1,8 +1,8 @@
 ---
 import { ModeToggle } from '@/components/color-mode-toggle';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import '@/styles/globals.css'
-import Scene from '@/components/scene';
+import BaseLayout  from '@/layouts/BaseLayout.astro';
+import Scene from '@/pages/_home/components/scene';
+export const prerender = false;
 ---
 
 <BaseLayout title="Welcome to Modulara">
@@ -10,29 +10,6 @@ import Scene from '@/components/scene';
 		<div class="flex items-center justify-end top-10 right-5 absolute">
 			<ModeToggle client:load/>
 		</div>
-		<Scene client:only="react" />
-		<div id="section1">
-			<h1 class=" h-screen text-2xl">SECTION 1</h1>
-		</div>
-		<div id="section2">
-			<h1 class=" h-screen text-2xl">SECTION 2</h1>
-		</div>
-		<div id="section3">
-			<h1 class=" h-screen text-2xl">SECTION 3</h1>
-		</div>
-		<div id="section4">
-			<h1 class=" h-screen text-2xl">SECTION 4</h1>
-		</div>
-		<div id="section5">
-			<h1 class=" h-screen text-2xl">SECTION 5</h1>
-		</div>
-		<div id="section6">
-			<h1 class="h-screen text-2xl">SECTION 6</h1>
-		</div>
-		<div id="section7">
-			<h1 class="h-screen text-2xl">SECTION 6</h1>
-		</div>
-		
-		
+		<Scene client:only="react"/>
 	</main>
 </BaseLayout>
