@@ -20,7 +20,7 @@ export default function Scene() {
     <div className="h-[70vh] w-full flex flex-col fixed inset-0 top-20 left-1/2 -translate-x-1/2 ">
       <div className="flex-1">
         <Canvas shadows camera={{ position: [0, 4, 6] }}>
-          <OrbitControls enableZoom={false} />
+          {/* <OrbitControls enableZoom={false}  /> */}
           <directionalLight
             intensity={2}
             position={[-5, 5, 5]}
