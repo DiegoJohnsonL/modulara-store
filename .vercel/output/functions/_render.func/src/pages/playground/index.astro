@@ -1,0 +1,15 @@
+---
+import { ModeToggle } from "@/components/color-mode-toggle";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Scene from "@/pages/_home/components/scene";
+export const prerender = false;
+---
+
+<BaseLayout title="Playground">
+  <main class="relative">
+    <div class="flex items-center justify-end top-10 right-5 absolute">
+      <ModeToggle client:load />
+    </div>
+    <Scene client:only="react" />
+  </main>
+</BaseLayout>

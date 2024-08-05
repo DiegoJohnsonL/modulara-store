@@ -1,23 +1,7 @@
 ---
-import { getImage, Image } from "astro:assets";
-import Hero from "../components/hero";
-const images = [
-  { src: "/renders/render-1.png", alt: "Modulara Render 1" },
-  { src: "/renders/render-20.png", alt: "Modulara Render 5" },
-  { src: "/renders/render-2.png", alt: "Modulara Render 2" },
-  { src: "/renders/render-3.png", alt: "Modulara Render 3" },
-  { src: "/renders/render-4.png", alt: "Modulara Render 4" },
-];
-// TODO: Optimize images
-// const optimizedImages = await Promise.all(
-//   images.map(async (image, index) => {
-//     return  await getImage({src: image , format: "webp", alt: `Modulara Render ${index + 1}`});
-//   })
-// );
+
 ---
 
-<section id="hero" class="h-screen w-full bg-[#9B5841] fixed">
-  <Hero images={images} client:load />
+<section id="hero" class="h-screen w-full fixed">
   {/* black overlay */}
-  <div class="size-full z-10 absolute inset-0 bg-black/10 pointer-events-none"></div>
 </section>

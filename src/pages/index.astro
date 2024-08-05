@@ -1,23 +1,45 @@
 ---
-import { ModeToggle } from "@/components/color-mode-toggle";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Heading from "./_home/sections/heading.astro";
 import Navbar from "./_home/components/navbar";
+import { getImage, Image } from "astro:assets";
+import Hero from "./_home/components/hero";
+import { TypographyH2 } from "@/components/ui/typography";
+const images = [
+  { src: "/renders/render-1.png", alt: "Modulara Render 1" },
+  { src: "/renders/render-20.png", alt: "Modulara Render 5" },
+  { src: "/renders/render-2.png", alt: "Modulara Render 2" },
+  { src: "/renders/render-3.png", alt: "Modulara Render 3" },
+  { src: "/renders/render-4.png", alt: "Modulara Render 4" },
+];
+// TODO: Optimize images
+// const optimizedImages = await Promise.all(
+//   images.map(async (image, index) => {
+//     return  await getImage({src: image , format: "webp", alt: `Modulara Render ${index + 1}`});
+//   })
+// );
 ---
 
 <BaseLayout title="Welcome to Modulara">
   <main class="relative">
-    <!-- <div class="flex items-center justify-end top-10 right-5 absolute">
-			<ModeToggle client:load/>
-		</div> -->
-    <!-- <Scene client:only="react"/> -->
-    <div class="fixed z-20 mx-auto w-full"><Navbar client:load /></div>
-    <div class="fixed w-full">
-      <Heading />
+    <div class="fixed z-20 mx-auto w-full">
+      <Navbar client:only="react" />
     </div>
+    <section class="fixed w-full bg-[#9B5841] h-screen" id="hero">
+      <Hero images={images} client:load />
+      <div class="size-full z-10 absolute inset-0 bg-black/10 pointer-events-none"></div>
+    </section>
     <div class="h-screen bg-transparent"></div>
     <div class="relative z-10">
-      <div class="w-full h-screen bg-black text-white grid place-content-center">content</div>
+      <div id="about" class="w-full bg-white px-4 md:px-28 py-10 md:py-[72px]">
+        <div class="flex flex-col justify-center text-[#51362D] items-center text-center gap-3 mx-auto max-w-3xl">
+          <label class="font-bold text-xs md:text-sm uppercase leading-6 tracking-[2px] opacity-50"
+            >Diseño a tu medida</label
+          >
+          <TypographyH2 className="tracking-tighter">
+            Personaliza cada detalle. Crea el espacio perfecto para ti.
+          </TypographyH2>
+        </div>
+      </div>
       <div class="w-full h-screen bg-[#F3EEE6] grid place-content-center">content</div>
     </div>
   </main>
