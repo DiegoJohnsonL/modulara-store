@@ -20,7 +20,7 @@ type HeroCarouselProps = {
 
 export default function Hero({ images }: HeroCarouselProps) {
   const [api, setApi] = useState<CarouselApi>();
-  const autoplay = useRef(Autoplay({ delay: 2800, stopOnInteraction: false }));
+  const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
   const [current, setCurrent] = useState(0);
   const [mouseDown, setMouseDown] = useState(false);
   useEffect(() => {
@@ -68,8 +68,18 @@ export default function Hero({ images }: HeroCarouselProps) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="flex left-5 lg:left-[20%] bg-transparent border-0 text-white" />
-          <CarouselNext className="flex right-5 lg:right-[20%] bg-transparent border-0 text-white" />
+          <CarouselPrevious
+            className="flex left-5 lg:left-[20%] bg-transparent border-0 text-white"
+            onClick={() => {
+              autoplay.current.reset();
+            }}
+          />
+          <CarouselNext
+            className="flex right-5 lg:right-[20%] bg-transparent border-0 text-white"
+            onClick={() => {
+              autoplay.current.reset();
+            }}
+          />
         </Carousel>
       </div>
       <div className=" w-full relative z-10 flex items-center flex-col text-center gap-[21px] top-28 md:top-[122px] px-4 md:px-28">
@@ -83,16 +93,28 @@ export default function Hero({ images }: HeroCarouselProps) {
             </TypographyH5>
           </div>
         </div>
-        <CarouselNavigation count={images.length} current={current} api={api} />
+        <CarouselNavigation
+          count={images.length}
+          current={current}
+          onClick={(index) => {
+            autoplay.current.reset();
+            api?.scrollTo(index);
+          }}
+        />
       </div>
-      {/* <div className="md:hidden absolute z-10  bottom-4 left-1/2 -translate-x-1/2">
-        <CarouselNavigation count={count} current={current} api={api} />
-      </div> */}
     </div>
   );
 }
 
-function CarouselNavigation({ count, current, api }: { count: number; current: number; api?: CarouselApi }) {
+function CarouselNavigation({
+  count,
+  current,
+  onClick,
+}: {
+  count: number;
+  current: number;
+  onClick: (index: number) => void;
+}) {
   return (
     <div className="flex gap-[9px]">
       {Array.from({ length: count }).map((_, index) => {
@@ -101,7 +123,7 @@ function CarouselNavigation({ count, current, api }: { count: number; current: n
           <Button
             key={index}
             variant={"ghost"}
-            onClick={() => api?.scrollTo(index)}
+            onClick={() => onClick(index)}
             className={`size-2.5 md:size-3 p-0 rounded-full ${
               selected ? "bg-white ring-0" : "ring-2 ring-inset ring-white/30"
             }`}
