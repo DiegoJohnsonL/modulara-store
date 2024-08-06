@@ -11,7 +11,7 @@ export default function Models() {
               <label className="font-bold text-xs md:text-sm uppercase leading-6 tracking-[2px] opacity-50">
                 prueba el que quieras:
               </label>
-              <div className="bg-black w-[324px]">colores</div>
+              <div className="bg-black w-full md:w-[324px]">colores</div>
             </div>
           </div>
         </div>
