@@ -14,7 +14,9 @@ export function TypographyH2({ children, className }: Readonly<TypographyProps>)
 }
 
 export function TypographyH3({ children, className }: Readonly<TypographyProps>) {
-  return <h4 className={cn("", className)}>{children}</h4>;
+  return (
+    <h4 className={cn("font-bold tracking-tight text-2xl md:text-[42px] md:leading-[52px]", className)}>{children}</h4>
+  );
 }
 
 export function TypographyH4({ children, className }: Readonly<TypographyProps>) {

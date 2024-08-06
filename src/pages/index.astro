@@ -2,8 +2,10 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Navbar from "./_home/components/navbar";
 import { getImage, Image } from "astro:assets";
-import Hero from "./_home/components/hero";
-import { TypographyH2 } from "@/components/ui/typography";
+import Hero from "./_home/sections/hero";
+import About from "./_home/sections/about.astro";
+import Features from "./_home/sections/features.astro";
+import Models from "./_home/sections/models";
 const images = [
   { src: "/renders/render-1.png", alt: "Modulara Render 1" },
   { src: "/renders/render-20.png", alt: "Modulara Render 5" },
@@ -24,23 +26,15 @@ const images = [
     <div class="fixed z-20 mx-auto w-full">
       <Navbar client:only="react" />
     </div>
-    <section class="fixed w-full bg-[#9B5841] h-screen" id="hero">
-      <Hero images={images} client:load />
-      <div class="size-full z-10 absolute inset-0 bg-black/10 pointer-events-none"></div>
-    </section>
-    <div class="h-screen bg-transparent"></div>
-    <div class="relative z-10">
-      <div id="about" class="w-full bg-white px-4 md:px-28 py-10 md:py-[72px]">
-        <div class="flex flex-col justify-center text-[#51362D] items-center text-center gap-3 mx-auto max-w-3xl">
-          <label class="font-bold text-xs md:text-sm uppercase leading-6 tracking-[2px] opacity-50"
-            >Diseño a tu medida</label
-          >
-          <TypographyH2 className="tracking-tighter">
-            Personaliza cada detalle. Crea el espacio perfecto para ti.
-          </TypographyH2>
-        </div>
+    <section class="relative h-screen bg-transparent" id="hero">
+      <div class="fixed top-0 w-full bg-[#9B5841]">
+        <Hero images={images} client:load />
       </div>
-      <div class="w-full h-screen bg-[#F3EEE6] grid place-content-center">content</div>
+    </section>
+    <div class="relative z-10 w-screen">
+      <About />
+      <Features />
+      <Models client:load />
     </div>
   </main>
 </BaseLayout>

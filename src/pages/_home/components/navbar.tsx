@@ -48,8 +48,8 @@ export default function Navbar() {
     <header ref={navRef} className={`relative z-50 px-4 md:px-28 ${padding} text-white transition-all duration-500`}>
       <nav className="flex gap-5 md:gap-8 justify-center">
         {navItems.map((item, index) => (
-          <a href={item.href} key={index}>
-            <a className={`text-sm md:text-lg underline-offset-4 hover:underline`}>{item.label}</a>
+          <a href={item.href} key={index} className="text-sm md:text-lg underline-offset-4 hover:underline">
+            {item.label}
           </a>
         ))}
       </nav>

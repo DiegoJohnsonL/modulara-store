@@ -102,6 +102,7 @@ export default function Hero({ images }: HeroCarouselProps) {
           }}
         />
       </div>
+      <div className="size-full z-10 absolute inset-0 bg-black/10 pointer-events-none"></div>
     </div>
   );
 }
