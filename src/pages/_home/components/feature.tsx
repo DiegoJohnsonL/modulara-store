@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { TypographyH3, TypographyH5, TypographyP } from "@/components/ui/typography";
 import { useMediaQuery } from "usehooks-ts";
@@ -17,17 +17,24 @@ const Feature: React.FC<FeatureProps> = ({ title, description, image, side }) =>
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.25, 0.5, 0.75], [0, 1, 0.0]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.5, 0.7], [0, 1, 0.0]);
+  const [animatedStyle, setAnimatedStyle] = useState(isLargeScreen ? { opacity } : {});
 
-  const animatedStyle = isLargeScreen ? { opacity } : {};
+  useEffect(() => {
+    if (isLargeScreen) {
+      setAnimatedStyle({ opacity });
+    } else {
+      setAnimatedStyle({});
+    }
+  }, [isLargeScreen]);
 
   return (
     <motion.div
       ref={ref}
-      className="flex flex-col lg:flex-row justify-between items-center w-full gap-6 lg:gap-28 h-screen"
+      className="flex flex-col lg:flex-row justify-center items-center w-full gap-6 lg:gap-36 md:h-screen"
     >
       <motion.div
-        className={`flex flex-col gap-3 lg:gap-8 lg:pr-[35px] ${side === "right" ? "lg:order-2" : ""}`}
+        className={`flex flex-col gap-3 lg:gap-8 lg:pr-[35px] max-w-[481px] ${side === "right" ? "lg:order-2" : ""}`}
         style={animatedStyle}
       >
         <TypographyH3 className="text-[#51362D]">{title}</TypographyH3>
