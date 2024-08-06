@@ -70,14 +70,16 @@ export default function Hero({ images }: HeroCarouselProps) {
           </CarouselContent>
           <CarouselPrevious
             className="flex left-5 lg:left-[20%] bg-transparent border-0 text-white"
-            onClick={() => {
+            onClick={(event) => {
               autoplay.current.reset();
+              api?.scrollPrev();
             }}
           />
           <CarouselNext
             className="flex right-5 lg:right-[20%] bg-transparent border-0 text-white"
             onClick={() => {
               autoplay.current.reset();
+              api?.scrollNext();
             }}
           />
         </Carousel>
