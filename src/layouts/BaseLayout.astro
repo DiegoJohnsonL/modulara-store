@@ -1,35 +1,20 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
-import '@fontsource-variable/dm-sans';
-import '@/styles/globals.css'
+import "@fontsource-variable/dm-sans";
+import "@/styles/globals.css";
 interface Props {
   title: string;
   description?: string;
   image?: string;
 }
 
-const { title, description = "Una descripción muy optimizada y llena de palabras clave bien investigadas.", image = "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png" } = Astro.props;
+const {
+  title,
+  description = "Una descripción muy optimizada y llena de palabras clave bien investigadas.",
+  image = "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+} = Astro.props;
 ---
-
-<!-- <script is:inline>
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
-  const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-  if (typeof localStorage !== "undefined") {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-  }
-</script> -->
 
 <html lang="es">
   <head>
@@ -50,7 +35,7 @@ const { title, description = "Una descripción muy optimizada y llena de palabra
       twitter={{
         creator: "@DiegoJo58079875",
       }}
-      extend={{
+      extend={{ 
         // extending the default link tags
         link: [{ rel: "icon", href: "/favicon.ico" }],
         // extending the default meta tags

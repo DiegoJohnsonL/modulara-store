@@ -6,6 +6,7 @@ import Hero from "./_home/sections/hero";
 import About from "./_home/sections/about.astro";
 import Features from "./_home/sections/features.astro";
 import Models from "./_home/sections/models";
+import HeroV2 from "./_home/sections/hero-v2";
 const images = [
   { src: "/renders/render-1.png", alt: "Modulara Render 1" },
   { src: "/renders/render-20.png", alt: "Modulara Render 5" },
@@ -28,7 +29,7 @@ const images = [
     </div>
     <section class="relative h-screen bg-transparent" id="hero">
       <div class="fixed top-0 w-full bg-[#9B5841]">
-        <Hero images={images} client:load />
+        <HeroV2 images={images} client:load />
       </div>
     </section>
     <div class="relative z-10">

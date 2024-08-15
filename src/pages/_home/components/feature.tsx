@@ -17,7 +17,7 @@ const Feature: React.FC<FeatureProps> = ({ title, description, image, side }) =>
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.2, 0.5, 0.7], [0, 1, 0.0]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.4, 0.6, 0.7], [0, 1, 1, 0.0]);
   const [animatedStyle, setAnimatedStyle] = useState(isLargeScreen ? { opacity } : {});
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Feature: React.FC<FeatureProps> = ({ title, description, image, side }) =>
   return (
     <motion.div
       ref={ref}
-      className="flex flex-col lg:flex-row justify-center items-center w-full gap-6 lg:gap-36 md:h-screen"
+      className="flex flex-col lg:flex-row justify-center items-center w-full gap-6 lg:gap-36 md:h-[65vh]"
     >
       <motion.div
         className={`flex flex-col gap-3 lg:gap-8 lg:pr-[35px] max-w-[481px] ${side === "right" ? "lg:order-2" : ""}`}
