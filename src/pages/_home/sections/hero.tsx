@@ -16,7 +16,7 @@ export default function Hero({ images }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
 
   return (
-    <div className="absolute h-screen w-full bg-[#9B5841]">
+    <div className="absolute h-screen max-h-[100svh] w-full bg-[#9B5841]">
       {/* Carousel */}
       <div className="absolute z-[5] size-full">
         <HeroCarousel

@@ -137,18 +137,16 @@ export default function HeroCarousel({
           </Button>
         </div>
       </div>
-      <div className="absolute z-[7] size-full max-h-[100dvh] transition-all">
-        <div className="absolute flex items-center justify-center bottom-10 md:bottom-14 left-1/2 -translate-x-1/2">
-          <div className="flex gap-2.5">
-            {images.map((_, index) => (
-              <div
-                key={index}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ring-2 ring-inset ring-white/50 duration-500 delay-200 ease-in-out ${
-                  index === currentIndex ? "bg-white" : "bg-transparent "
-                }`}
-              />
-            ))}
-          </div>
+      <div className="absolute flex items-center justify-center bottom-10 md:bottom-14 left-1/2 -translate-x-1/2 z-[7]">
+        <div className="flex gap-2.5">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2.5 h-2.5 rounded-full transition-colors ring-2 ring-inset ring-white/50 duration-500 delay-200 ease-in-out ${
+                index === currentIndex ? "bg-white" : "bg-transparent "
+              }`}
+            />
+          ))}
         </div>
       </div>
     </div>

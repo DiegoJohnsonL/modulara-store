@@ -29,7 +29,7 @@ const optimizedImages = await Promise.all(
     <div class="fixed z-20 mx-auto w-full">
       <Navbar client:only="react" />
     </div>
-    <section class="relative h-screen bg-transparent" id="hero">
+    <section class="relative h-screen max-h-[100svh] bg-transparent" id="hero">
       <div class="fixed top-0 w-full">
         <Hero images={optimizedImages} client:load />
       </div>
