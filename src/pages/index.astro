@@ -1,25 +1,26 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Navbar from "./_home/components/navbar";
+import Navbar from "./_home/navbar";
 import { getImage, Image } from "astro:assets";
-import Hero from "./_home/sections/hero";
 import About from "./_home/sections/about.astro";
 import Features from "./_home/sections/features.astro";
 import Models from "./_home/sections/models";
 import HeroV2 from "./_home/sections/hero-v2";
+import HeroCarousel from "./_home/hero-carousel";
+
 const images = [
-  { src: "/renders/render-1.png", alt: "Modulara Render 1" },
-  { src: "/renders/render-20.png", alt: "Modulara Render 5" },
-  { src: "/renders/render-2.png", alt: "Modulara Render 2" },
-  { src: "/renders/render-3.png", alt: "Modulara Render 3" },
-  { src: "/renders/render-4.png", alt: "Modulara Render 4" },
+  { src: "/renders/render-1.png", alt: "Modulara Render 1", width: 3840, height: 2160 },
+  { src: "/renders/render-2.png", alt: "Modulara Render 2", width: 3840, height: 2160 },
+  { src: "/renders/render-3.png", alt: "Modulara Render 3", width: 3840, height: 2160 },
+  { src: "/renders/render-4.png", alt: "Modulara Render 4", width: 3840, height: 2160 },
 ];
-// TODO: Optimize images
-// const optimizedImages = await Promise.all(
-//   images.map(async (image, index) => {
-//     return  await getImage({src: image , format: "webp", alt: `Modulara Render ${index + 1}`});
-//   })
-// );
+
+const optimizedImages = await Promise.all(
+  images.map(async (image) => {
+    const optimizedImage = await getImage({ src: image.src, format: "webp", width: image.width, height: image.height });
+    return { src: optimizedImage.src, alt: image.alt };
+  })
+);
 ---
 
 <BaseLayout title="Welcome to Modulara">
@@ -29,7 +30,7 @@ const images = [
     </div>
     <section class="relative h-screen bg-transparent" id="hero">
       <div class="fixed top-0 w-full bg-[#9B5841]">
-        <HeroV2 images={images} client:load />
+        <HeroV2 images={optimizedImages} client:load />
       </div>
     </section>
     <div class="relative z-10">

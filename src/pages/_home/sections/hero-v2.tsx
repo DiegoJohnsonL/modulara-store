@@ -13,45 +13,30 @@ type HeroCarouselProps = {
 
 export default function HeroV2({ images }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
-  const [mouseDown, setMouseDown] = useState(false);
   const onNext = () => {
     setCurrent((prev) => (prev + 1) % images.length);
   };
   const onPrevious = () => {
     setCurrent((prev) => (prev - 1 + images.length) % images.length);
   };
-  console.log(current);
-  useEffect(() => {}, []);
 
   return (
-    <div
-      className="absolute h-screen w-full"
-      onMouseDown={() => {
-        setMouseDown((prev) => !prev);
-      }}
-      onMouseUp={() => {
-        setMouseDown((prev) => !prev);
-      }}
-    >
+    <div className="absolute h-screen w-full">
       {/* Carousel */}
       <div className="absolute z-[5] size-full">
         {images?.map((image, index, array) => (
           <motion.img
             key={index}
             variants={{
-              next: { clipPath: "inset(0 0 0 0)" },
-              previous: { clipPath: "inset(0 0 0 100%)" },
               visible: { clipPath: "inset(0 0 0 0)" },
               hidden: { clipPath: "inset(0 0 0 100%)" },
             }}
             initial="hidden"
             animate={current === index || current === index + 1 ? "visible" : "hidden"}
-            transition={{ duration: 0.5, ease: "easeIn" }}
+            transition={{ duration: 2, ease: "easeIn" }}
             src={image.src}
             alt={image.alt}
-            className={`size-full absolute top-0 right-0 opacity-100 object-cover  object-[66%] md:object-center ${
-              mouseDown ? "cursor-grabbing" : "cursor-grab"
-            }`}
+            className={`size-full absolute top-0 right-0 opacity-100 object-cover  object-[66%] md:object-center `}
           />
         ))}
         <Button
