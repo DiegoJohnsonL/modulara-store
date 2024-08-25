@@ -4,51 +4,79 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
+interface NavbarStyle {
+  backgroundColor: string;
+  textColor: string;
+  padding: string;
+}
+
 export default function Navbar() {
   const navItems = [
-    { label: "Home", href: "#" },
+    { label: "Home", href: "#hero" },
     { label: "Acerca de", href: "#about" },
     { label: "Modelos", href: "#models" },
     { label: "Contacto", href: "#contact" },
   ];
   const navRef = useRef<HTMLHeadingElement>(null);
-  const [padding, setPadding] = useState("py-6 md:py-10");
+  const [navbarStyle, setNavbarStyle] = useState<NavbarStyle>({
+    backgroundColor: "transparent",
+    textColor: "white",
+    padding: "py-6 md:py-10",
+  });
 
   useGSAP(() => {
     const navbar = navRef.current;
-    gsap.to(navbar, {
-      scrollTrigger: {
-        trigger: "#hero", // Replace with your hero section's ID or class
-        start: "bottom 88px",
-        onEnter: () => {
-          gsap.to(navbar, {
-            backgroundColor: "white",
-            color: "#51362D",
-            duration: 0.1,
-            onStart: () => {
-              setPadding("py-4 md:py-6");
-            },
-          });
-        },
-        onLeaveBack: () => {
-          gsap.to(navbar, {
-            backgroundColor: "transparent",
-            color: "white",
-            duration: 0.1,
-            onStart: () => {
-              setPadding("py-6 md:py-10");
-            },
-          });
-        },
-      },
+    if (!navbar) return;
+
+    const sections = ["hero", "about", "features", "models"];
+    sections.forEach((section) => {
+      ScrollTrigger.create({
+        trigger: `#${section}`,
+        start: "top 88px",
+        end: "bottom 88px",
+        onEnter: () => updateNavbarStyle(section),
+        onEnterBack: () => updateNavbarStyle(section),
+      });
     });
-  });
+
+    function updateNavbarStyle(section: string) {
+      const styles: Record<string, Omit<NavbarStyle, "padding">> = {
+        hero: { backgroundColor: "transparent", textColor: "white" },
+        about: { backgroundColor: "white", textColor: "#51362D" },
+        features: { backgroundColor: "#f3eee6", textColor: "#51362D" },
+        models: { backgroundColor: "white", textColor: "#51362D" },
+      };
+
+      const newPadding = section === "hero" ? "py-6 md:py-10" : "py-4 md:py-6";
+
+      gsap.to(navbar, {
+        backgroundColor: styles[section].backgroundColor,
+        color: styles[section].textColor,
+        duration: 0.15, // Fast color transition
+        onComplete: () =>
+          setNavbarStyle({
+            ...styles[section],
+            padding: newPadding,
+          }),
+      });
+
+      // Animate padding separately with a slower transition
+      gsap.to(navbar, {
+        padding: newPadding,
+        duration: 0.5, // Slower padding transition
+      });
+    }
+  }, []);
 
   return (
-    <header ref={navRef} className={`relative z-50 px-4 md:px-28 ${padding} text-white transition-all duration-500`}>
+    <header
+      ref={navRef}
+      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-28 ${navbarStyle.padding} transition-all duration-500`}
+      style={{ backgroundColor: navbarStyle.backgroundColor, color: navbarStyle.textColor }}
+    >
       <nav className="flex gap-5 md:gap-8 justify-center">
         {navItems.map((item, index) => (
-          <a href={item.href} key={index} className="text-sm md:text-lg underline-offset-4 hover:underline">
+          <a href={item.href} key={index} className="text-sm md:text-lg underline-offset-4 hover:underline font-medium">
             {item.label}
           </a>
         ))}
