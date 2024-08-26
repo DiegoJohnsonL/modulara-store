@@ -38,3 +38,7 @@ export function TypographySmall({ children, className }: Readonly<TypographyProp
 export function TypographyExtraSmall({ children, className }: Readonly<TypographyProps>) {
   return <small className={cn("", className)}>{children}</small>;
 }
+
+export function TypographyLabel({ children, className }: Readonly<TypographyProps>) {
+  return <label className={cn("font-bold text-sm tracking-wide", className)}>{children}</label>;
+}

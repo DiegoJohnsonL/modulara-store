@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 interface NavbarStyle {
@@ -24,16 +24,32 @@ export default function Navbar() {
     padding: "py-6 md:py-10",
   });
 
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const offset = 52; // 52px offset
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
   useGSAP(() => {
     const navbar = navRef.current;
     if (!navbar) return;
 
-    const sections = ["hero", "about", "features", "models"];
-    sections.forEach((section) => {
+    const sections = ["hero", "about", "features", "models", "contact"];
+    sections.forEach((section, index) => {
       ScrollTrigger.create({
         trigger: `#${section}`,
-        start: "top 88px",
-        end: "bottom 88px",
+        start: "top 80px",
+        end: index === sections.length - 1 ? "bottom bottom" : "bottom 80px",
         onEnter: () => updateNavbarStyle(section),
         onEnterBack: () => updateNavbarStyle(section),
       });
@@ -45,6 +61,7 @@ export default function Navbar() {
         about: { backgroundColor: "white", textColor: "#51362D" },
         features: { backgroundColor: "#f3eee6", textColor: "#51362D" },
         models: { backgroundColor: "white", textColor: "#51362D" },
+        contact: { backgroundColor: "white", textColor: "#51362D" },
       };
 
       const newPadding = section === "hero" ? "py-6 md:py-10" : "py-4 md:py-6";
@@ -63,7 +80,8 @@ export default function Navbar() {
       // Animate padding separately with a slower transition
       gsap.to(navbar, {
         padding: newPadding,
-        duration: 0.5, // Slower padding transition
+        duration: 0.7, // Slower padding transition
+        ease: "power2.inOut",
       });
     }
   }, []);
@@ -76,7 +94,12 @@ export default function Navbar() {
     >
       <nav className="flex gap-5 md:gap-8 justify-center">
         {navItems.map((item, index) => (
-          <a href={item.href} key={index} className="text-sm md:text-lg underline-offset-4 hover:underline font-medium">
+          <a
+            href={item.href}
+            key={index}
+            className="text-sm md:text-lg underline-offset-4 hover:underline font-medium"
+            onClick={(e) => handleNavClick(e, item.href)}
+          >
             {item.label}
           </a>
         ))}

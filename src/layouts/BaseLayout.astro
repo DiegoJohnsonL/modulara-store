@@ -3,6 +3,10 @@ import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "@fontsource-variable/dm-sans";
 import "@/styles/globals.css";
+import "@/styles/smooth-scroll.css";
+import WassaButton from "@/pages/_home/wassa-button";
+import LocomotiveScroll from "locomotive-scroll";
+
 interface Props {
   title: string;
   description?: string;
@@ -35,7 +39,7 @@ const {
       twitter={{
         creator: "@DiegoJo58079875",
       }}
-      extend={{ 
+      extend={{
         // extending the default link tags
         link: [{ rel: "icon", href: "/favicon.ico" }],
         // extending the default meta tags
@@ -51,7 +55,15 @@ const {
     />
     <ViewTransitions />
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen" data-scroll-container>
     <slot />
+    <WassaButton client:load />
   </body>
 </html>
+
+<script is:inline>
+  const scroll = new LocomotiveScroll({
+    el: document.querySelector("[data-scroll-container]"),
+    smooth: true,
+  });
+</script>
