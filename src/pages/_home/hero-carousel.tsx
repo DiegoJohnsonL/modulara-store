@@ -84,7 +84,7 @@ export default function HeroCarousel({
           variant={"outline"}
           size={"icon"}
           className={
-            "absolute size-11 md:size-16 rounded-full flex top-1/2 -translate-y-1/2 left-5 lg:left-[19%] bg-transparent border-0 text-white"
+            "absolute size-11 md:size-16 rounded-full flex top-[56%] md:top-1/2 -translate-y-1/2 left-5 lg:left-[19%] bg-transparent border-0 text-white z-40"
           }
           onClick={() => handleButtonClick(prevSlide)}
           disabled={false}
@@ -96,7 +96,7 @@ export default function HeroCarousel({
           variant={"outline"}
           size={"icon"}
           className={
-            "absolute size-11 md:size-16 rounded-full top-1/2 -translate-y-1/2 flex right-5 lg:right-[19%] bg-transparent border-0 text-white"
+            "absolute size-11 md:size-16 rounded-full top-[56%] md:top-1/2 -translate-y-1/2 flex right-5 lg:right-[19%] bg-transparent border-0 text-white z-40"
           }
           disabled={false}
           onClick={() => handleButtonClick(nextSlide)}
