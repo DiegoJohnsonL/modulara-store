@@ -1,7 +1,8 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useMemo } from "react";
+import LocomotiveScroll from "locomotive-scroll";
 gsap.registerPlugin(ScrollTrigger);
 
 interface NavbarStyle {
@@ -11,6 +12,7 @@ interface NavbarStyle {
 }
 
 export default function Navbar() {
+  const scroll = useMemo(() => new LocomotiveScroll(), []);
   const navItems = [
     { label: "Home", href: "#hero" },
     { label: "Acerca de", href: "#about" },
@@ -27,17 +29,19 @@ export default function Navbar() {
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace("#", "");
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const offset = 52; // 52px offset
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+    const target = href;
+    scroll.scrollTo(target, { offset: -52 });
+    // const targetElement = document.getElementById(targetId);
+    // if (targetElement) {
+    //   const offset = 52; // 52px offset
+    //   const elementPosition = targetElement.getBoundingClientRect().top;
+    //   const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+    //   window.scrollTo({
+    //     top: offsetPosition,
+    //     behavior: "smooth",
+    //   });
+    // }
   }, []);
 
   useGSAP(() => {
