@@ -34,7 +34,7 @@ export default function Hero({ images }: HeroCarouselProps) {
           currentIndex={current}
           setCurrentIndex={setCurrent}
           duration={2}
-          transitionDuration={0.9}
+          transitionDuration={1.2}
         />
       </div>
 
