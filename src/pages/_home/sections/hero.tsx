@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { TypographyH1, TypographyH5, TypographyLabel } from "@/components/ui/typography";
-import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Facebook } from "lucide-react";
-import HeroCarousel from "../hero-carousel";
+import { useCallback, useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import HeroCarousel, { CarouselHandle } from "../hero-carousel";
 
 type HeroCarouselProps = {
   images: {
@@ -14,18 +14,50 @@ type HeroCarouselProps = {
 
 export default function Hero({ images }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
+  const carouselRef = useRef<CarouselHandle>(null);
+
+  const handleNextSlide = useCallback(() => {
+    carouselRef.current?.nextSlide();
+  }, []);
+
+  const handlePrevSlide = useCallback(() => {
+    carouselRef.current?.prevSlide();
+  }, []);
 
   return (
     <div className="absolute h-screen max-h-[100svh] w-full bg-[#9B5841]">
       {/* Carousel */}
       <div className="absolute z-[5] size-full">
         <HeroCarousel
+          ref={carouselRef}
           images={images}
           currentIndex={current}
           setCurrentIndex={setCurrent}
           duration={2}
           transitionDuration={0.9}
         />
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="absolute size-full z-20">
+        <Button
+          variant={"outline"}
+          size={"icon"}
+          className="absolute size-11 md:size-16 rounded-full flex top-1/2 -translate-y-1/2 left-5 lg:left-[19%] bg-transparent border-0 text-white z-40"
+          onClick={handlePrevSlide}
+        >
+          <ChevronLeft className="size-5 md:size-6" />
+          <span className="sr-only">Previous slide</span>
+        </Button>
+        <Button
+          variant={"outline"}
+          size={"icon"}
+          className="absolute size-11 md:size-16 rounded-full top-1/2 -translate-y-1/2 flex right-5 lg:right-[19%] bg-transparent border-0 text-white z-40"
+          onClick={handleNextSlide}
+        >
+          <ChevronRight className="size-5 md:size-6" />
+          <span className="sr-only">Next slide</span>
+        </Button>
       </div>
       <div className="absolute hidden md:block right-4 bottom-4 md:right-24 md:bottom-9 z-[7]">
         <div className="flex gap-5 flex-col text-center">
@@ -86,7 +118,3 @@ export default function Hero({ images }: HeroCarouselProps) {
     </div>
   );
 }
-
-
-
-
