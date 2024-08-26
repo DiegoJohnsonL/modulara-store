@@ -33,8 +33,8 @@ export default function Hero({ images }: HeroCarouselProps) {
           images={images}
           currentIndex={current}
           setCurrentIndex={setCurrent}
-          duration={2}
-          transitionDuration={1.2}
+          duration={1.2}
+          transitionDuration={2}
         />
       </div>
 
@@ -96,7 +96,7 @@ export default function Hero({ images }: HeroCarouselProps) {
           {images.map((_, index) => (
             <div
               key={index}
-              className={`w-2.5 h-2.5 rounded-full transition-colors ring-2 ring-inset ring-white/50 duration-500 delay-200 ease-in-out ${
+              className={`w-2.5 h-2.5 rounded-full transition-colors ring-2 ring-inset ring-white/50 duration-700 delay-1000 ease-in-out ${
                 index === current ? "bg-white" : "bg-transparent "
               }`}
             />
