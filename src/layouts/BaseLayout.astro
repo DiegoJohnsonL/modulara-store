@@ -6,6 +6,8 @@ import "@/styles/globals.css";
 import "@/styles/smooth-scroll.css";
 import WassaButton from "@/pages/_home/wassa-button";
 import LocomotiveScroll from "locomotive-scroll";
+import Loader from "@/components/Loader.astro";
+import { LOADER_DURATION } from "@/lib/consts";
 
 interface Props {
   title: string;
@@ -55,15 +57,26 @@ const {
     />
     <ViewTransitions />
   </head>
-  <body class="min-h-screen" data-scroll-container>
-    <slot />
+  <body data-scroll-container class="relative">
+    <div
+      id="loader-container"
+      class="bg-[#f3eee6] z-[200] fixed top-0 left-0 w-full h-screen transition-transform duration-1000 ease-in-out"
+    >
+      <Loader />
+    </div>
+    <main id="main-content">
+      <slot />
+    </main>
     <WassaButton client:load />
   </body>
 </html>
 
-<script is:inline>
-  const scroll = new LocomotiveScroll({
-    el: document.querySelector("[data-scroll-container]"),
-    smooth: true,
-  });
+<script is:inline define:vars={{ LOADER_DURATION }}>
+  let loaderContainer = document.getElementById("loader-container");
+  setTimeout(() => {
+    loaderContainer.style.transform = "translateY(-100%)";
+    loaderContainer.addEventListener("transitionend", () => {
+      loaderContainer.style.display = "none";
+    });
+  }, LOADER_DURATION);
 </script>

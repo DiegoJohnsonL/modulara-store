@@ -20,7 +20,7 @@ export default function WassaButton() {
       href={`https://wa.me/${phoneNumber}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-4 left-4 md:left-24 md:bottom-9 z-50"
+      className="fixed bottom-4 right-4 md:right-24 md:bottom-9 z-50"
     >
       <Button
         size="icon"

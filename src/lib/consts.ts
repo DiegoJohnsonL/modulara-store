@@ -1,0 +1,3 @@
+const LOADER_DURATION = 3000;
+
+export { LOADER_DURATION };
