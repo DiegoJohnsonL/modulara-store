@@ -19,7 +19,7 @@ export default function Contact() {
           <img
             src="https://placehold.co/400"
             alt="Contact us"
-            className="w-full h-auto rounded-lg shadow-lg"
+            className="w-full h-auto rounded-lg shadow-sm"
             width={600}
             height={800}
           />
