@@ -80,7 +80,7 @@ const HeroCarousel = forwardRef<CarouselHandle, CarouselProps>(
 
     return (
       <div className="relative size-full">
-        <div className="size-full z-[7] absolute inset-0 bg-black/10 pointer-events-none"></div>
+        <div className="size-full z-[7] absolute inset-0 bg-black/25 pointer-events-none"></div>
         <div className="absolute size-full overflow-hidden opacity-90 z-[6]">
           {images.map((image, index) => (
             <img
