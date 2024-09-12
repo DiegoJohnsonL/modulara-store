@@ -87,7 +87,7 @@ const HeroCarousel = forwardRef<CarouselHandle, CarouselProps>(
               key={index}
               src={image.src}
               alt={`Slide ${index + 1}`}
-              className="absolute top-0 left-0 w-full h-full object-cover object-[70%] md:object-center"
+              className="absolute top-0 left-0 w-full h-full object-cover  md:object-center"
               style={{ zIndex: index === currentIndex ? 1 : 0 }}
             />
           ))}
@@ -107,7 +107,7 @@ const HeroCarousel = forwardRef<CarouselHandle, CarouselProps>(
               <img
                 src={images[currentIndex].src}
                 alt={`Current Slide ${currentIndex + 1}`}
-                className="w-full h-full object-cover object-[70%] md:object-center"
+                className="w-full h-full object-cover  md:object-center"
               />
             </motion.div>
           </AnimatePresence>
