@@ -42,7 +42,7 @@ export default function Hero({ images }: HeroCarouselProps) {
         <Button
           variant={"outline"}
           size={"icon"}
-          className="absolute size-11 md:size-16 rounded-full hover:bg-white/30 flex top-1/2 -translate-y-1/2 left-5 lg:left-[19%] bg-transparent border-0 text-white z-40"
+          className="absolute size-11 md:size-16 rounded-full hover:bg-white/30 flex top-1/2 -translate-y-1/2 left-5  bg-transparent border-0 text-white z-40"
           onClick={handlePrevSlide}
         >
           <ChevronLeft className="size-5 md:size-6" />
@@ -51,7 +51,7 @@ export default function Hero({ images }: HeroCarouselProps) {
         <Button
           variant={"outline"}
           size={"icon"}
-          className="absolute size-11 md:size-16 rounded-full hover:bg-white/30 top-1/2 -translate-y-1/2 flex right-5 lg:right-[19%] bg-transparent border-0 text-white z-40"
+          className="absolute size-11 md:size-16 rounded-full hover:bg-white/30 top-1/2 -translate-y-1/2 flex right-5  bg-transparent border-0 text-white z-40"
           onClick={handleNextSlide}
         >
           <ChevronRight className="size-5 md:size-6 font-bold" />
