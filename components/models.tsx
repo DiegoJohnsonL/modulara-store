@@ -68,6 +68,7 @@ export default function Models() {
                                         <Image
                                             src={image.src}
                                             alt={image.alt}
+                                            priority
                                             fill
                                             className="object-contain md:object-cover"
                                         />
@@ -92,13 +93,13 @@ const images = [
     {
         src: "/AD/Mint-001.jpg",
         alt: "Mint",
-        colors: ["#8EA29F", "#CCAAAB"],
+        colors: ["#CCAAAB", "#8EA29F"],
         properties: ["Fresh", "Calming"],
     },
     {
         src: "/AD/Monochrome-001.jpg",
         alt: "Monochrome",
-        colors: ["#222024", "#D8DAE6"],
+        colors: ["#D8DAE6", "#222024"],
         properties: ["Classic", "Versatile"],
     },
     {
@@ -110,7 +111,7 @@ const images = [
     {
         src: "/AD/Oreo-001.jpg",
         alt: "Oreo",
-        colors: ["#3C3D4D", "#B3AFBC"],
+        colors: ["#222024", "#D8DAE6"],
         properties: ["Contrasting", "Playful"],
     },
     {
@@ -122,7 +123,7 @@ const images = [
     {
         src: "/AD/Vanilla-001.jpg",
         alt: "Vanilla",
-        colors: ["#AA8F7B", "#D3D6E7"],
+        colors: ["#D3D6E7", "#AA8F7B"],
         properties: ["Subtle", "Timeless"],
     },
     {
