@@ -1,0 +1,92 @@
+.cup {
+    position: relative;
+    width: 90px; /* Reducido de 110px */
+    height: 75px; /* Reducido de 90px */
+    border: 3px solid #f3eee6; /* Reducido de 4px */
+    box-shadow: 0 0 0 5px #352a22; /* Reducido de 6px */
+    border-radius: 4px 4px 25px 30px; /* Ajustado */
+    background: url("/images/coffee.png");
+    background-repeat: repeat-x;
+    background-position: 0 54px; /* Ajustado */
+    background-size: 100%;
+    animation: filling 4s infinite;
+  }
+
+  @keyframes filling {
+    0%,
+    100% {
+      background-position: 0 54px; /* Ajustado */
+    }
+
+    50% {
+      background-position: 160px -12px; /* Ajustado */
+    }
+  }
+
+  .cup .cup-handle {
+    position: absolute;
+    top: 2px;
+    right: -30px; /* Ajustado */
+    width: 26px; /* Reducido de 32px */
+    height: 50px; /* Reducido de 60px */
+    border: 5px solid #352a22; /* Reducido de 6px */
+    border-radius: 8px 4px 20px 8px; /* Ajustado */
+  }
+
+  .cup .steam {
+    position: absolute;
+    border-radius: 4px 1px;
+    width: 3px; /* Reducido de 4px */
+    animation: steaming 2s infinite;
+  }
+
+  @keyframes steaming {
+    0%,
+    100% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+      filter: blur(0.8px);
+      transform: translateY(-5px);
+    }
+  }
+
+  .cup .steam:nth-child(1) {
+    top: -30px; /* Ajustado */
+    left: 26px; /* Ajustado */
+    height: 12px; /* Reducido */
+    background: #8e5a3423;
+    animation-delay: 0.2s;
+  }
+
+  .cup .steam:nth-child(2) {
+    top: -50px; /* Ajustado */
+    left: 39px; /* Ajustado */
+    height: 20px; /* Reducido */
+    background: #8e5a3454;
+    animation-delay: 0.6s;
+  }
+
+  .cup .steam:nth-child(3) {
+    top: -38px; /* Ajustado */
+    left: 52px; /* Ajustado */
+    height: 16px; /* Reducido */
+    background: #8e5a3433;
+    animation-delay: 1s;
+  }
+
+  .cup-container p {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
