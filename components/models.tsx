@@ -87,13 +87,13 @@ const images = [
     {
         src: "/AD/Almond-001.jpg",
         alt: "Almond",
-        colors: ["#AA8F7B", "#D3D6E7"],
+        colors: ["#c6b5a9", "#D3D6E7"],
         properties: ["Elegant", "Warm"],
     },
     {
         src: "/AD/Mint-001.jpg",
         alt: "Mint",
-        colors: ["#CCAAAB", "#8EA29F"],
+        colors: ["#B6CBD0", "#BA8F90"],
         properties: ["Fresh", "Calming"],
     },
     {
