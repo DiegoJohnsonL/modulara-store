@@ -11,7 +11,7 @@ export default function About() {
                     Diseño a tu medida
                 </label>
                 <h2 className="font-bold text-3xl md:text-[58px] md:leading-[70px] tracking-tighter">
-                    Personaliza cada detalle. Crea el espacio perfecto para ti.
+                    Crea el espacio perfecto para ti.
                 </h2>
             </div>
             <p className="font-medium text-[#B8AFAF] leading-none text-lg md:text-[22px] h-[28px] md:h-[32px] tracking-[7px] flex items-center">
