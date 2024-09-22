@@ -31,7 +31,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <div className="absolute h-screen max-h-[100vh] w-full bg-[#9B5841]">
+        <div className="absolute h-[100dvh] w-full bg-[#9B5841]">
             <div className="absolute z-[5] size-full">
                 <HeroCarousel
                     ref={carouselRef}
@@ -62,10 +62,10 @@ export default function Hero() {
                     <span className="sr-only">Next slide</span>
                 </Button>
             </div>
-            <div className="absolute hidden md:block left-4 bottom-4 md:left-24 md:bottom-20 z-[8]">
+            <div className="absolute  left-4 bottom-4 md:left-24 md:bottom-20 z-[8]">
                 <div className="flex gap-5 flex-col text-center">
-                    <label className="font-bold text-sm tracking-wide text-white">DESCUBRE MÁS</label>
-                    <div className="flex items-center justify-center gap-[30px]">
+                    <label className="font-bold hidden md:block text-sm tracking-wide text-white">DESCUBRE MÁS</label>
+                    <div className="flex  items-center justify-center gap-4 md:gap-[30px]">
                         <a href={SOCIALS.facebook} target="_blank">
                             <Button
                                 className="rounded-full bg-white/20 hover:bg-white/40"

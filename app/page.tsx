@@ -13,7 +13,7 @@ export default function Home() {
             <div className="fixed z-20 mx-auto w-full">
                 <Navbar />
             </div>
-            <section className="relative h-screen bg-transparent" id="hero">
+            <section className="relative h-[100dvh] bg-transparent" id="hero">
                 <div className="fixed top-0 w-full">
                     <Hero />
                 </div>
