@@ -42,7 +42,7 @@ export default function Hero() {
                     transitionDuration={2}
                 />
             </div>
-            <div className="">
+            <div className="hidden md:block">
                 <Button
                     variant={"outline"}
                     size={"icon"}
@@ -65,7 +65,7 @@ export default function Hero() {
             <div className="absolute hidden md:block left-4 bottom-4 md:left-24 md:bottom-20 z-[8]">
                 <div className="flex gap-5 flex-col text-center">
                     <label className="font-bold text-sm tracking-wide text-white">DESCUBRE MÁS</label>
-                    <div className="flex items-center gap-[30px]">
+                    <div className="flex items-center justify-center gap-[30px]">
                         <a href={SOCIALS.facebook} target="_blank">
                             <Button
                                 className="rounded-full bg-white/20 hover:bg-white/40"
@@ -127,7 +127,6 @@ export default function Hero() {
                             y necesidades.
                         </h5>
                     </div>
-                    <Button></Button>
                 </div>
             </div>
         </div>

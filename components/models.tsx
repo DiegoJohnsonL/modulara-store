@@ -19,65 +19,75 @@ export default function Models() {
 
     const handleCircleClick = (index: number) => {
         if (api) {
-            api.scrollTo(index);
+            api.scrollTo(index, true);
         }
     };
 
     return (
-        <section id="models" className="bg-white p-6 md:p-20 md:h-screen flex flex-col w-full">
-            <div className="flex flex-col gap-6 md:gap-12 flex-grow">
-                <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between">
-                    <h2 className="font-bold text-3xl md:text-[58px] md:leading-[70px] flex-1 text-black">
-                        Elige los colores que vayan contigo.
-                    </h2>
-                    <div className="flex-1">
-                        <div className="h-full justify-end flex flex-col w-fit md:ml-auto gap-1 leading-[26px]">
-                            <p className="uppercase font-bold text-sm tracking-wider text-[#51362D] opacity-50">
-                                prueba el que quieras:
-                            </p>
-                            <div className="w-full flex gap-4 flex-wrap items-center py-2 md:py-4 ">
-                                {images.map((image, index) => (
-                                    <div
-                                        className={cn(
-                                            "size-7 md:size-9 aspect-square rounded-full cursor-pointer overflow-hidden",
-                                            current === index + 1 && "ring-1 ring-[#dbdbdf] ring-offset-[3px]"
-                                        )}
-                                        key={index}
-                                        onClick={() => handleCircleClick(index)}
-                                    >
+        <section id="models" className="bg-white p-6 md:p-20 flex flex-col w-full">
+            <div className="flex flex-col gap-6 md:h-screen">
+                <div className="flex flex-col gap-6 md:gap-12 flex-grow">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-between">
+                        <h2 className="font-bold text-3xl md:text-[58px] md:leading-[70px] flex-1 text-black">
+                            Elige los colores que vayan contigo.
+                        </h2>
+                        <div className="flex-1">
+                            <div className="h-full justify-end flex flex-col w-fit md:ml-auto gap-1 leading-[26px]">
+                                <p className="uppercase font-bold text-sm tracking-wider text-[#51362D] opacity-50">
+                                    prueba el que quieras:
+                                </p>
+                                <div className="w-full flex gap-4 flex-wrap items-center py-2 md:py-4 ">
+                                    {images.map((image, index) => (
                                         <div
-                                            className="w-full h-1/2"
-                                            style={{ backgroundColor: image.colors[0] }}
-                                        ></div>
-                                        <div
-                                            className="w-full h-1/2"
-                                            style={{ backgroundColor: image.colors[1] }}
-                                        ></div>
-                                    </div>
-                                ))}
+                                            className={cn(
+                                                "size-7 md:size-9 aspect-square rounded-full cursor-pointer overflow-hidden",
+                                                current === index + 1 && "ring-1 ring-[#dbdbdf] ring-offset-[3px]"
+                                            )}
+                                            key={index}
+                                            onClick={() => handleCircleClick(index)}
+                                        >
+                                            <div
+                                                className="w-full h-1/2"
+                                                style={{ backgroundColor: image.colors[0] }}
+                                            ></div>
+                                            <div
+                                                className="w-full h-1/2"
+                                                style={{ backgroundColor: image.colors[1] }}
+                                            ></div>
+                                        </div>
+                                    ))}
+                                </div>
+                                {/* <div className="ml-auto">
+                                    <Link href={"/files/catalogo.pdf"} target="_blank">
+                                        <Button className="h-12  " size={"lg"}>
+                                            Descarga nuestro catálogo
+                                        </Button>
+                                    </Link>
+                                </div> */}
                             </div>
                         </div>
                     </div>
+                    <div className="flex-grow flex flex-col overflow-hidden w-full aspect-square md:aspect-auto">
+                        <Carousel setApi={setApi} className="flex-grow relative w-full" opts={{ loop: true }}>
+                            <CarouselContent className="h-full w-full -ml-0">
+                                {images.map((image, index) => (
+                                    <CarouselItem className="h-full w-full p-0" key={index}>
+                                        <div className="h-full w-full relative">
+                                            <Image
+                                                src={image.src}
+                                                alt={image.alt}
+                                                priority
+                                                fill
+                                                className="object-contain md:object-cover"
+                                            />
+                                        </div>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                        </Carousel>
+                    </div>
                 </div>
-                <div className="flex-grow flex flex-col overflow-hidden w-full aspect-square md:aspect-auto">
-                    <Carousel setApi={setApi} className="flex-grow relative w-full" opts={{ loop: true }}>
-                        <CarouselContent className="h-full w-full">
-                            {images.map((image, index) => (
-                                <CarouselItem className="h-full w-full" key={index}>
-                                    <div className="h-full w-full relative">
-                                        <Image
-                                            src={image.src}
-                                            alt={image.alt}
-                                            priority
-                                            fill
-                                            className="object-contain md:object-cover"
-                                        />
-                                    </div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                    </Carousel>
-                </div>
+                <div className="flex justify-end w-full items-center"></div>
             </div>
         </section>
     );
