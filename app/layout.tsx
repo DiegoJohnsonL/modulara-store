@@ -56,7 +56,7 @@ export default function RootLayout({
         <html lang="es">
             <body className={`${dm.variable} antialiased`}>
                 <LoaderProvider>
-                    <ReactLenis root options={{ wheelMultiplier: 0.3, touchMultiplier: 0.3, duration: 1 }}>
+                    <ReactLenis root options={{ wheelMultiplier: 0.5, touchMultiplier: 0.5, duration: 1 }}>
                         {children}
                     </ReactLenis>
                 </LoaderProvider>

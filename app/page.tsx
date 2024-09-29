@@ -9,7 +9,7 @@ import WassaButton from "@/components/wassa-button";
 
 export default function Home() {
     return (
-        <div className="relative ">
+        <div className="relative">
             <div className="fixed z-20 mx-auto w-full">
                 <Navbar />
             </div>
